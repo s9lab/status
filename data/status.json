@@ -1,25 +1,30 @@
 {
-  "generatedAt": null,
-  "overall": "unknown",
+  "generatedAt": "2026-06-14T19:32:41.786Z",
+  "overall": "operational",
   "services": [
     {
       "id": "backend",
       "name": "Backend API",
-      "status": "unknown",
-      "latencyMs": null,
-      "statusCode": null,
-      "checkedAt": null,
-      "message": "Noch keine Prüfung ausgeführt"
+      "status": "operational",
+      "latencyMs": 347,
+      "statusCode": 200,
+      "checkedAt": "2026-06-14T19:32:41.786Z",
+      "message": "Dienst antwortet normal"
     },
     {
       "id": "catalog",
       "name": "Cosmetics API",
-      "status": "unknown",
-      "latencyMs": null,
-      "statusCode": null,
-      "checkedAt": null,
-      "message": "Noch keine Prüfung ausgeführt"
+      "status": "operational",
+      "latencyMs": 320,
+      "statusCode": 200,
+      "checkedAt": "2026-06-14T19:32:41.786Z",
+      "message": "Dienst antwortet normal"
     }
   ],
-  "history": []
+  "history": [
+    {
+      "date": "2026-06-14",
+      "status": "operational"
+    }
+  ]
 }
