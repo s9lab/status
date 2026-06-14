@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#08090b" />
+  <meta name="description" content="Live-Status und Ausfallhistorie der S9Lab-Dienste." />
+  <title>S9Lab Status</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="site-header shell">
+    <a class="brand" href="#top" aria-label="S9Lab Status Startseite">
+      <span class="brand-mark">S9</span>
+      <span><strong>S9Lab</strong><small>Status</small></span>
+    </a>
+    <nav>
+      <a href="#services">Dienste</a>
+      <a href="#history">Verlauf</a>
+      <a href="#incidents">Vorfälle</a>
+      <a href="#api">API</a>
+    </nav>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">SYSTEM STATUS</p>
+        <h1>Transparenter Status.<br />Keine Vermutungen.</h1>
+        <p class="hero-copy">Automatische Verfügbarkeitsprüfungen für Backend, API und zentrale Client-Dienste.</p>
+      </div>
+      <div class="hero-meta">
+        <span id="lastUpdated">Letzte Prüfung: –</span>
+        <button id="refreshButton" type="button">Neu laden</button>
+      </div>
+    </section>
+
+    <section id="overallCard" class="overall-card status-unknown" aria-live="polite">
+      <div class="status-icon"><span></span></div>
+      <div>
+        <p class="eyebrow">AKTUELLER STATUS</p>
+        <h2 id="overallTitle">Status wird geladen</h2>
+        <p id="overallDescription">Die letzten Prüfergebnisse werden abgerufen.</p>
+      </div>
+      <div class="availability">
+        <strong id="availabilityValue">–</strong>
+        <span>Verfügbarkeit / 30 Tage</span>
+      </div>
+    </section>
+
+    <section id="services" class="section-block">
+      <div class="section-heading">
+        <div><p class="eyebrow">INFRASTRUKTUR</p><h2>Dienste</h2></div>
+        <span class="muted">Automatische Prüfung über GitHub Actions</span>
+      </div>
+      <div id="serviceList" class="service-list"></div>
+    </section>
+
+    <section id="history" class="section-block">
+      <div class="section-heading">
+        <div><p class="eyebrow">LETZTE 30 TAGE</p><h2>Verfügbarkeitsverlauf</h2></div>
+        <div class="legend"><span><i class="up"></i>Online</span><span><i class="down"></i>Ausfall</span><span><i class="unknown"></i>Keine Daten</span></div>
+      </div>
+      <div id="historyGrid" class="history-grid" aria-label="Verfügbarkeitsverlauf"></div>
+    </section>
+
+    <section id="incidents" class="section-block">
+      <div class="section-heading">
+        <div><p class="eyebrow">DOKUMENTATION</p><h2>Vorfälle</h2></div>
+        <span class="muted">Ausfälle werden automatisch geöffnet und geschlossen</span>
+      </div>
+      <div id="incidentList" class="incident-list"></div>
+    </section>
+
+    <section id="api" class="section-block api-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">SCHNITTSTELLEN</p><h2>Überwachte API</h2></div>
+      </div>
+      <div class="api-grid">
+        <article class="api-card"><span class="method get">GET</span><code>/health</code><p>Öffentlicher Backend-Healthcheck. Erwartet HTTP 200 und <code>ok: true</code>.</p></article>
+        <article class="api-card"><span class="method get">GET</span><code>/api/v1/cosmetics</code><p>Prüft Erreichbarkeit und Antwort des öffentlichen Cosmetic-Katalogs.</p></article>
+        <article class="api-card"><span class="method post">POST</span><code>/api/v1/handshake</code><p>Client-Handshake. Wird aus Sicherheitsgründen nicht automatisch mit Testkonten ausgeführt.</p></article>
+        <article class="api-card"><span class="method ws">WS</span><code>:8789</code><p>WebSocket-Dienst für Präsenz, Cosmetics und Profil-Updates. Optional erweiterbar.</p></article>
+      </div>
+      <p class="security-note">Admin-Endpunkte und Secrets werden absichtlich weder abgefragt noch auf dieser öffentlichen Seite angezeigt.</p>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <span>© <span id="year"></span> S9Lab</span>
+    <span>Powered by GitHub Pages & GitHub Actions</span>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
